@@ -1,0 +1,23 @@
+body{
+    background-color: greenyellow;
+}
+h1{
+    background-color: wheat;
+}
+#Tú_dibujo{
+    font-size: 25px;
+}
+#Confianza{
+    font-size: 25px;
+}
+#Puntuación{
+    font-size: 25px;
+    float: right;
+}
+#Tiempo{
+    font-size: 25px;
+    float: left;
+}
+p{
+    font-size: 25px;
+}
