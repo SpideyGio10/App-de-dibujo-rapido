@@ -21,17 +21,24 @@ function updateCanvas(){
 function setup(){
     canvas=createCanvas(350,350);
     canvas.center();
-    background("white")
+    background("white");
+    canvas.mouseReleased(classifyCanvas);
+    synth=window.speechSynthesis;
 }
 
 function draw(){
-    check_sketch()
+    check_sketch();
         if(draw_sketch=sketch){
             answer_holder="set";
             score++;
             document.getElementById("Puntuación").innerHTML='Puntuación: '+ score;
         }
-    
+    strokeWeight(13);
+    stroke(0);
+
+    if(mouseIsPressed){
+        line(pmouseX,pmouseY,mouseX,mouseY);
+    }
 }
 
 function check_sketch(){
@@ -47,5 +54,23 @@ function check_sketch(){
         timer_check="";
         answer_holder="";
         updateCanvas();
+    }
+}
+
+function preload(){
+    classifier=ml5.imageClassifier('DoodleNet');
+}
+
+function classifyCanvas(){
+    classifier.classify(canvas,gotResult);
+}
+
+function gotResult(error,results){
+    if(error){
+        console.error(error);
+    }else{
+        console.log(results);
+        document.getElementById('tú_dibujo').innerHTML='Tú dibujo: '+results[0].label;
+        document.getElementById('Confianza').innerHTML='Confianza: '+Math.round(results[0].confidence * 100)+'%';
     }
 }
