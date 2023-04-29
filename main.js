@@ -28,7 +28,7 @@ function setup(){
 
 function draw(){
     check_sketch();
-        if(draw_sketch=sketch){
+        if(draw_sketch==sketch){
             answer_holder="set";
             score++;
             document.getElementById("Puntuación").innerHTML='Puntuación: '+ score;
